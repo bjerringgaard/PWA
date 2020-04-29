@@ -1,8 +1,14 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <h1>Test</h1>
-  </div>
+  <v-container grid-list-xs>
+    <v-layout align-center>
+      <v-flex sm2 xs12 offset-sm9>
+        <h1>Hello</h1>
+          <div>
+            <p>Buy stuff</p>
+          </div>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
