@@ -15,7 +15,7 @@
       color="primary"
       dark
     >
-	<v-toolbar-title><v-icon>mdi-fruit-grapes</v-icon>The Winery</v-toolbar-title>
+	<v-toolbar-title><router-link tag="li" to="/"><v-icon>mdi-fruit-grapes</v-icon>The Winery</router-link></v-toolbar-title>
       <v-spacer />
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
     </v-app-bar>
@@ -35,22 +35,39 @@
 </script>
 
 <style lang="scss" scoped>
-	nav ul {
+
+	nav{
+		ul {
 		padding: 0;
 		margin-top: 20px;
 		text-decoration: none;
+		}
+		li{
+			margin-left: 25%;
+			padding: 10px 20px;
+			list-style-type: none;
+			cursor: pointer;
+		}
+		li i{
+			margin-right: 10px;
+		}
+		li:last-child {
+			position: absolute;
+			bottom: 40px;
+		}
 	}
-	nav li{
-		margin-left: 15%;
-		padding: 10px 20px;
-		list-style-type: none;
-		cursor: pointer;
+	
+
+	.v-toolbar__title{
+		li{
+			padding: 10px 20px;
+			list-style-type: none;
+			cursor: pointer;
+		}
+		li i{
+			margin-right: 10px;
+		}
 	}
-	nav li i{
-		margin-right: 10px;
-	}
-	nav li:last-child {
-		position: absolute;
-		bottom: 40px;
-	}
+		
+
 </style>
