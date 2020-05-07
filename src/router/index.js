@@ -5,6 +5,8 @@ import About from '../views/About.vue'
 import Wine from '../views/Wine.vue'
 import Wineries from '../views/Wineries.vue'
 import Login from '../components/admin/Login.vue'
+import Orders from '../views/Orders.vue'
+import AddNewItems from '../components/admin/AddNewItems.vue'
 
 
 Vue.use(VueRouter)
@@ -37,6 +39,16 @@ Vue.use(VueRouter)
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/orders',
+    name: 'Orders',
+    component: Orders
+  },
+  {
+    path: '/addNew',
+    name: 'addNew',
+    component: AddNewItems
   },
 
   //Redirect

@@ -1,5 +1,7 @@
 <template>
-	<v-container>
+<div>
+	<Sorter />
+	<v-container>	
 		<v-row>
 			<v-col>
 				<div class="card">
@@ -22,6 +24,8 @@
 					</div>
 				</div>
 			</v-col>
+
+			<!-- Test Items -->
 				<v-col>
 				<div class="card">
 					<div class="img">
@@ -85,23 +89,25 @@
 					</div>
 				</div>
 			</v-col>
+			<!-- Test Items -->
 		</v-row>
 	</v-container>
+</div>
 </template>
 
 <script>
+	import Sorter from '../components/Sorter.vue';
+
 	export default {
-		
+		components: {
+			Sorter
+		},
 	}
 </script>
 
 <style lang="scss" scoped>
 	.v-application p{
 		margin-bottom: 0;
-	}
-
-	.container{
-		width: 1300px;	
 	}
 
 	.col{
@@ -182,6 +188,4 @@
 			}
 		}
 	}
-
-	
 </style>

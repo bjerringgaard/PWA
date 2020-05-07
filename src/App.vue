@@ -27,4 +27,9 @@ export default {
   #app{
     background-color: map-get($color, bg);
   }
+
+  .container{
+    width: 1300px;	
+    margin-top: -40px;
+	}
 </style>

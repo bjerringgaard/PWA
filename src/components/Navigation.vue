@@ -6,7 +6,9 @@
 			<router-link tag="li" to="/wine"><v-icon>mdi-glass-wine</v-icon>Wine</router-link>
 			<router-link tag="li" to="/wineries"><v-icon>mdi-barn</v-icon>Wineries</router-link>
 			<router-link tag="li" to="/about"><v-icon>mdi-information</v-icon>About</router-link>
-			<router-link tag="li" to="/login"><v-icon>mdi-lock</v-icon>Login</router-link>
+			<router-link tag="li" to="/orders" class="primary--text"><v-icon color="primary">mdi-clipboard-text</v-icon>Orders</router-link>
+
+			<router-link tag="li" to="/login" class="red--text"><v-icon color="red">mdi-lock</v-icon>Login</router-link>
 		</ul>
     </v-navigation-drawer>
 
