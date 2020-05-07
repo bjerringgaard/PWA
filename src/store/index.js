@@ -38,7 +38,7 @@ export default new Vuex.Store({
             state.basketItems.push({
               name: item.name,
               price: item.price,
-              quantity: 1
+              quantity: item.quantity,
             })
           }
         })

@@ -7,6 +7,8 @@ import Wineries from '../views/Wineries.vue'
 import Login from '../components/admin/Login.vue'
 import Orders from '../views/Orders.vue'
 import AddNewItems from '../components/admin/AddNewItems.vue'
+import firebase from 'firebase'
+import 'firebase/firestore'
 
 
 Vue.use(VueRouter)
@@ -43,11 +45,13 @@ Vue.use(VueRouter)
   {
     path: '/orders',
     name: 'Orders',
+    meta: {requiresAuth : true},
     component: Orders
   },
   {
     path: '/addNew',
     name: 'addNew',
+    meta: {requiresAuth : true},
     component: AddNewItems
   },
 
@@ -62,6 +66,15 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+});
+
+router.beforeEach ((to, from, next) => {
+  const currentUser = firebase.auth().currentUser;
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+  if(requiresAuth && !currentUser) next('login');
+  else next();
 })
 
 export default router
+

@@ -6,7 +6,7 @@
 			<router-link tag="li" to="/wine"><v-icon>mdi-glass-wine</v-icon>Wine</router-link>
 			<router-link tag="li" to="/wineries"><v-icon>mdi-barn</v-icon>Wineries</router-link>
 			<router-link tag="li" to="/about"><v-icon>mdi-information</v-icon>About</router-link>
-			<router-link tag="li" to="/orders" class="primary--text"><v-icon color="primary">mdi-clipboard-text</v-icon>Orders</router-link>
+			<router-link tag="li" to="/orders" class="primary--text" v-if="currentUser"><v-icon color="primary">mdi-clipboard-text</v-icon>Orders</router-link>
 
 			<router-link tag="li" to="/login" class="red--text"><v-icon color="red">mdi-lock</v-icon>Login</router-link>
 		</ul>
@@ -19,6 +19,7 @@
     >
 	<v-toolbar-title><router-link tag="li" to="/"><v-icon>mdi-fruit-grapes</v-icon>The Winery</router-link></v-toolbar-title>
       <v-spacer />
+	  <v-icon>mdi-cart</v-icon>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
     </v-app-bar>
 	<v-content></v-content>
@@ -26,13 +27,35 @@
 </template>
 
 <script>
+/* eslint-disable no-unused-vars */
+import { db } from '../../firebase'
+/* eslint-enable no-unused-vars */
+
+import firebase from 'firebase'
+import 'firebase/firestore'
+import store from '../store/index.js'
+
+firebase.auth().onAuthStateChanged(function(user){
+	if(user) {
+		store.dispatch('setUser', user)
+	} else{
+		store.dispatch('setUser', null)
+	}
+});
+
   export default {
     props: {
       source: String,
     },
     data: () => ({
       drawer: 0,
-    }),
+	}),
+	
+	computed: {
+		currentUser(){
+			return this.$store.getters.currentUser
+		}
+	}
   }
 </script>
 

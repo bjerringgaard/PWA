@@ -5,13 +5,13 @@
 				<div class="pa-2" id="info_box">
 					<h1>Add new item</h1>
 						<div id="info">
-						<v-text-field label="Name of Bagel" required v-model="name">
-						</v-text-field>
-						<v-text-field label="Description" required v-model="description">
-						</v-text-field>
-						<v-text-field label="Price" required v-model="price">
-						</v-text-field>
-						
+						<v-text-field label="Winery" required v-model="winery"></v-text-field>
+						<v-text-field label="Name" required v-model="name"></v-text-field>
+						<v-text-field label="Type" required v-model="type"></v-text-field>
+						<v-text-field label="Area" required v-model="area"></v-text-field>
+						<v-text-field label="Country" required v-model="country"></v-text-field>
+						<v-text-field label="Description" required v-model="description"></v-text-field>
+						<v-text-field label="Price" required v-model="price"></v-text-field>
 						<v-file-input label="File input" @change="uploadImage"></v-file-input>
 
 						<v-btn color="complete" v-on:click="addNewMenuItem" :disabled="btnDisable">
@@ -58,7 +58,11 @@ import { dbMenuAdd, fb } from '../../../firebase.js'
 export default {
 	data() {
 		return {
+			winery: '',
 			name: '',
+			type: '',
+			area: '',
+			country: '',
 			description: '',
 			price: '',
 			image: null,	
@@ -87,10 +91,15 @@ export default {
 
 		addNewMenuItem(){
 			dbMenuAdd.add({
+				winery: this.winery,
 				name: this.name,
+				type: this.type,
+				area: this.area,
+				country: this.country,
 				description: this.description,
 				price: this.price,
-				image: this.image
+				image: this.image,
+				quantity: '',
 			})
 		}
 	}
