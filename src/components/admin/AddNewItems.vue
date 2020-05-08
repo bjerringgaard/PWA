@@ -67,8 +67,8 @@ export default {
 			price: '',
 			image: null,	
 			btnDisable: true,
-			dropdown_winery: ['Batzella', 'Bonfanti', 'Celestiere', 'Delmeran', 'Domaine Agape', 'Domaine lavillaudiere', 'linaje Garsea'],
-			dropdown_type: ['Hvidvin', 'Rødvin', 'Rose', 'champagne'],
+			dropdown_winery: ['Batzella', 'Bonfanti', 'Celestiere', 'Delmeran', 'Domaine Agape', 'Domaine lavillaudiere', 'Linaje Garsea'],
+			dropdown_type: ['Hvidvin', 'Rødvin', 'Rose', 'Champagne'],
 			dropdown_area: ['Bolgheri', 'Valpolicella', 'Alsace', 'Provence', 'Rhone', 'Sancerre', 'Ribera Del Duero', 'Cigales', 'Rueda'],
 			dropdown_country: ['Italien', 'Frankrig', 'Spanien'],
 

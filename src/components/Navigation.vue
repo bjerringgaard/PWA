@@ -9,7 +9,8 @@
 			<router-link tag="li" to="/orders" class="primary--text" v-if="currentUser"><v-icon color="primary">mdi-clipboard-text</v-icon>Orders</router-link>
 			<router-link tag="li" to="/vare" class="primary--text" v-if="currentUser"><v-icon color="primary">mdi-package-variant</v-icon>Products</router-link>
 
-			<router-link tag="li" to="/login" class="red--text"><v-icon color="red">mdi-lock</v-icon>Login</router-link>
+			<router-link tag="li" to="/login" class="red--text" v-if="!currentUser"><v-icon color="red">mdi-lock</v-icon>Login</router-link>
+			<li v-on:click.prevent="signOut()" class="red--text" v-if="currentUser"><v-icon color="red">mdi-lock</v-icon>LogOut</li>
 		</ul>
     </v-navigation-drawer>
 
@@ -47,6 +48,17 @@ firebase.auth().onAuthStateChanged(function(user){
     data: () => ({
       drawer: 0,
 	}),
+
+	methods: {
+		signOut() {
+				firebase.auth().signOut().then(() => {
+					alert("Logged Out");
+					this.$router.replace('/')
+				}).catch(error => {
+					alert(error)
+				})
+			}
+	},
 	
 	computed: {
 		currentUser(){

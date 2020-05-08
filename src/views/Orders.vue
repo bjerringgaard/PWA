@@ -23,6 +23,7 @@
 					<td class="py-3"><p v-for="subitem in item.orderLines" :key="subitem.id" style="margin:0;">{{ subitem.winery }}, {{ subitem.name }}</p></td>
 					<td><div id="status_box" v-bind:class="item.status" v-on:click="switchStage(item.id)"> {{ item.status }} </div></td>
 					<td class="py-3"><p v-for="subitem in item.orderLines" :key="subitem.id" style="margin:0;"> {{ subitem.price }} </p></td>
+
 				</tr>
 			</tbody>
 		</v-simple-table>
@@ -114,7 +115,7 @@ export default {
 			var revenueIncome = 0;
 
 			this.orderItems.forEach(element => {
-				if(element.archive == true) {
+				if(element.status === "complete") {
 					element.orderLines.forEach(el =>{
 						revenueIncome += el.price * el.quantity
 					})

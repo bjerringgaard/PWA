@@ -9,7 +9,6 @@
 					<v-text-field background-color="wtext"  outlined v-model="email" label="Email" required></v-text-field>
 					<v-text-field background-color="wtext"  outlined v-model="password" label="Password" required></v-text-field>
 					<v-btn color="primary" v-on:click.prevent="signIn()">Login</v-btn>
-					<v-btn color="red" v-on:click.prevent="signOut()">LogOut</v-btn>
 				</div>
 			</v-col>
 		</v-row>
@@ -42,15 +41,6 @@ import 'firebase/firestore'
 					console.log(error)
 				})
 			},
-
-			signOut() {
-				firebase.auth().signOut().then(() => {
-					alert("Logged Out");
-					this.$router.replace('/')
-				}).catch(error => {
-					alert(error)
-				})
-			}
 		},
 	}
 </script>

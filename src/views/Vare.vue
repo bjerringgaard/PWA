@@ -26,9 +26,13 @@
 									
 									<td id="td_img"><v-img v-bind:src="item.image" contain height="100px" width="100px"></v-img></td>
 									<td>
+										<br>
+										<span id="td_name"><b>{{ item.winery }}</b></span> 
+										<br>
 										<span id="td_name"><b>{{ item.name }}</b></span> 
 										<br><br>
 										<span id="td_desc">{{ item.description }}</span>
+										<br><br>
 									</td>
 									<td>{{ item.price }} DKK</td>
 									<td>
@@ -81,8 +85,8 @@ export default {
 		updatedSucces: false,
 		updatedText: 'Menu item has beed updated',
 
-		dropdown_winery: ['Batzella', 'Bonfanti', 'Celestiere', 'Delmeran', 'Domaine Agape', 'Domaine lavillaudiere', 'linaje Garsea'],
-		dropdown_type: ['Hvidvin', 'Rødvin', 'Rose', 'champagne'],
+		dropdown_winery: ['Batzella', 'Bonfanti', 'Celestiere', 'Delmeran', 'Domaine Agape', 'Domaine lavillaudiere', 'Linaje Garsea'],
+		dropdown_type: ['Hvidvin', 'Rødvin', 'Rose', 'Champagne'],
 		dropdown_area: ['Bolgheri', 'Valpolicella', 'Alsace', 'Provence', 'Rhone', 'Sancerre', 'Ribera Del Duero', 'Cigales', 'Rueda'],
 		dropdown_country: ['Italien', 'Frankrig', 'Spanien'],
       }

@@ -200,6 +200,10 @@ export default {
 		margin-bottom: 0;
 	}
 
+	.container{
+		width: 1400px;
+	}
+
 	.row{
 		display: flex;
 	}
@@ -211,6 +215,8 @@ export default {
 	#products{
 		display: flex;
 		justify-content: center;
+		flex-wrap: wrap;
+		width: 100%;
 	}
 
 	.card {
@@ -280,6 +286,8 @@ export default {
 
 				background-color: map-get($color, primary);
 				color: map-get($color, wtext);
+
+				cursor: pointer;
 
 				p{
 					color: map-get($color, wtext)

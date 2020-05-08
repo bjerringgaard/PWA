@@ -23,11 +23,11 @@
 				</router-link>
       </v-col>
       <v-col>
-        <router-link to="/about">
+        <router-link to="/login">
 					<div id="aboutUs">
 						<div class="navBox">
-						<h2>Vil du vide mere om os?</h2>
-						<p>Og alle vores færdigheder</p>
+						<h2>Log ind på admin siden her</h2>
+						<p>Hvis du da kender koden</p>
 						<v-btn color="champange">Læs mere</v-btn>
 						</div>
         	</div>

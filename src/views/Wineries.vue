@@ -6,39 +6,53 @@
 			</div>
 			<v-row>
 				<v-col md="3">
-					<div class="frame">
-						<img src="../assets/Wineries/Batzella-1-300x300.png" alt="Batzella">
-					</div>
+					<router-link to="/batzella">
+						<div class="frame">
+							<img src="../assets/Wineries/Batzella-1-300x300.png" alt="Batzella">
+						</div>
+					</router-link>
 				</v-col>
 				<v-col md="3">
-					<div class="frame">
-						<img src="../assets/Wineries/Bonfanti-300x300.png" alt="Bonfanti">
-					</div>
+					<router-link to="/bonfanti">
+						<div class="frame">
+							<img src="../assets/Wineries/Bonfanti-300x300.png" alt="Bonfanti">
+						</div>
+					</router-link>
 				</v-col>
 				<v-col md="3">
-					<div class="frame">
-						<img src="../assets/Wineries/Celestiere-300x300.png" alt="Celestiere">
-					</div>
+					<router-link to="/celestiere">
+						<div class="frame">
+							<img src="../assets/Wineries/Celestiere-300x300.png" alt="Celestiere">
+						</div>
+					</router-link>
 				</v-col>
 				<v-col md="3">
-					<div class="frame">
-						<img src="../assets/Wineries/Dalmeran-1-300x300.png" alt="Dalmeran">
-					</div>
+					<router-link to="/dalmeran">
+						<div class="frame">
+							<img src="../assets/Wineries/Dalmeran-1-300x300.png" alt="Dalmeran">
+						</div>
+					</router-link>
 				</v-col>
 				<v-col md="3">
-					<div class="frame">
-						<img src="../assets/Wineries/Domaine-Agape-300x300.png" alt="Agape">
-					</div>
+					<router-link to="/agape">
+						<div class="frame">
+							<img src="../assets/Wineries/Domaine-Agape-300x300.png" alt="Agape">
+						</div>
+					</router-link>
 				</v-col>
 				<v-col md="3">
-					<div class="frame">
-						<img src="../assets/Wineries/Domaine-Lavillaudiere-1-300x300.png" alt="Domaine Lavillaudiere">
-					</div>
+					<router-link to="/lavillaudiere">
+						<div class="frame">
+							<img src="../assets/Wineries/Domaine-Lavillaudiere-1-300x300.png" alt="Domaine Lavillaudiere">
+						</div>
+					</router-link>
 				</v-col>
 				<v-col md="3">
-					<div class="frame">
-						<img src="../assets/Wineries/Linaje-Garsea-300x300.png" alt="Garsea">
-					</div>
+					<router-link to="garsea">
+						<div class="frame">
+							<img src="../assets/Wineries/Linaje-Garsea-300x300.png" alt="Garsea">
+						</div>
+					</router-link>
 				</v-col>
 			</v-row>
 		</div>
