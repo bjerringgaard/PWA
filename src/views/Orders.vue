@@ -2,17 +2,19 @@
 <div>
 		<div id="info">
 			<div id="title">
-				<p class="body-1 font-weight-bold pa-3 darkgrey--text">ORDERS:</p>
+				<p class="body-1 font-weight-bold darkgrey--text">ORDERS: </p>
+				<p id="totalRevenueText" class="font-weight-regular darkgrey--text">REVENUE: <span id="totalRevenueTextTotal"> {{ revenueTotal }}</span></p>
 			</div>
 		<v-simple-table id="menu_table">
 			<thead>
 				<tr>
 					<th>Delete</th>
-					<th class="text-left" style="width:10%">Order Nr.</th>
-					<th class="text-left" style="width:10%">Qty</th>
+					<th class="text-left" style="width:7%">Order Nr.</th>
+					<th class="text-left" style="width:5%">Qty</th>
 					<th class="text-left" style="width:50%">Item</th>
-					<th class="text-left" style="width:20%">Status</th>
+					<th class="text-left" style="width:10%">Status</th>
 					<th class="text-left" style="width:10%">Price</th>
+					<th class="text-left" style="width:10%">Total</th>
 				</tr>
 			</thead>
 			<tbody class="font-weight-light">
@@ -22,24 +24,16 @@
 					<td class="py-3"><p v-for="subitem in item.orderLines" :key="subitem.id" style="margin:0;"> {{ subitem.quantity }} </p></td>
 					<td class="py-3"><p v-for="subitem in item.orderLines" :key="subitem.id" style="margin:0;">{{ subitem.winery }}, {{ subitem.name }}</p></td>
 					<td><div id="status_box" v-bind:class="item.status" v-on:click="switchStage(item.id)"> {{ item.status }} </div></td>
-					<td class="py-3"><p v-for="subitem in item.orderLines" :key="subitem.id" style="margin:0;"> {{ subitem.price }} </p></td>
-
+					<td class="py-3"><p v-for="subitem in item.orderLines" :key="subitem.id" style="margin:0;"> {{ subitem.price }} DKK</p></td>
+					<td class="py-3"><p v-for="subitem in item.orderLines" :key="subitem.id" style="margin:0;"> {{ subitem.price * subitem.quantity }} DKK</p></td>
 				</tr>
 			</tbody>
 		</v-simple-table>
-		</div>
-		<div class="pa-2 mt-1" id="info">
-			<div id="totalRevenue">
-				<p id="totalRevenueText">
-					Total Revenue: <span id="totalRevenueTextTotal"> {{ revenueTotal }}</span>
-				</p>
-			</div>
 		</div>
 		</div>
 </template>
 
 <script>
-/* eslint-disable no-unused-vars */
 import { dbOrders } from '../../firebase'
 
 export default {
@@ -81,33 +75,9 @@ export default {
 
 			})
 		},
-
-		addToBasket(item) {
-			this.basketDump.push({
-				name: item.name,
-				price: item.price,
-				quantity: item.quantity,
-			});
-			this.$store.commit('addBasketItems', this.basketDump);
-			this.basketDump = [];
-		},
-		increaseQtn(item) {
-			item.quantity++
-		},
-		decreaseQtn(item) {
-			item.quantity--;
-
-			if(item.quantity === 0){
-				this.basket.splice(this.basket.indexOf(item), 1)
-			}
-		},
 	},
 
 	computed: {
-		basket() {
-			// return this.$store.state.basketItems
-			return this.$store.getters.getBasketItems
-		},
 		orderItems() {
 			return this.$store.getters.getOrderItems
 		},
@@ -122,7 +92,7 @@ export default {
 				}
 			});
 			return revenueIncome
-		}
+		},
 	},
   }
 </script>
@@ -159,11 +129,13 @@ export default {
 	}
 
 	#title{
-		display: flex;
-		align-items: center;
 
 		p{
 			margin: 0;
 		}
+	}
+
+	#totalRevenueText {
+		font-size: 16px;
 	}
 </style>
