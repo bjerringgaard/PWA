@@ -1,15 +1,13 @@
 <template>
-	<v-conainer>
+<div>
 		<div id="info">
 			<div id="title">
 				<p class="body-1 font-weight-bold pa-3 darkgrey--text">ORDERS:</p>
-				<v-btn color="secondary" small text to="/addNew">
-					<v-icon>mdi-plus</v-icon><span style="padding:0 10px;">Add item</span>
-				</v-btn>
 			</div>
 		<v-simple-table id="menu_table">
 			<thead>
 				<tr>
+					<th>Delete</th>
 					<th class="text-left" style="width:10%">Order Nr.</th>
 					<th class="text-left" style="width:10%">Qty</th>
 					<th class="text-left" style="width:50%">Item</th>
@@ -19,9 +17,10 @@
 			</thead>
 			<tbody class="font-weight-light">
 				<tr v-for="item in orderItems" :key="item.name" v-if="item.storeOrder == false">
+					<td><v-icon v-on:click="deleteOrderItem(item.id)">mdi-delete</v-icon></td>
 					<td>{{ item.orderNumber }}</td>
 					<td class="py-3"><p v-for="subitem in item.orderLines" :key="subitem.id" style="margin:0;"> {{ subitem.quantity }} </p></td>
-					<td class="py-3"><p v-for="subitem in item.orderLines" :key="subitem.id" style="margin:0;"> {{ subitem.name }} </p></td>
+					<td class="py-3"><p v-for="subitem in item.orderLines" :key="subitem.id" style="margin:0;">{{ subitem.winery }}, {{ subitem.name }}</p></td>
 					<td><div id="status_box" v-bind:class="item.status" v-on:click="switchStage(item.id)"> {{ item.status }} </div></td>
 					<td class="py-3"><p v-for="subitem in item.orderLines" :key="subitem.id" style="margin:0;"> {{ subitem.price }} </p></td>
 				</tr>
@@ -35,7 +34,7 @@
 				</p>
 			</div>
 		</div>
-	</v-conainer>
+		</div>
 </template>
 
 <script>
@@ -72,12 +71,6 @@ export default {
 				.then(() => {
 				})
 			}
-		},
-
-		archiveOrderItem(id){
-			dbOrders.doc(id).update({archive: true, storeOrder: true})
-			.then(() => {	
-			})
 		},
 
 		deleteOrderItem(id){

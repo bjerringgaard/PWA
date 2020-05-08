@@ -5,11 +5,11 @@
 				<div class="pa-2" id="info_box">
 					<h1>Add new item</h1>
 						<div id="info">
-						<v-text-field label="Winery" required v-model="winery"></v-text-field>
+						<v-overflow-btn :items="dropdown_winery" label="Winery" v-model="winery"></v-overflow-btn>
+						<v-overflow-btn :items="dropdown_type" label="Type" v-model="type"></v-overflow-btn>
+						<v-overflow-btn :items="dropdown_area" label="Area" v-model="area"></v-overflow-btn>
+						<v-overflow-btn :items="dropdown_country" label="Country" v-model="country"></v-overflow-btn>
 						<v-text-field label="Name" required v-model="name"></v-text-field>
-						<v-text-field label="Type" required v-model="type"></v-text-field>
-						<v-text-field label="Area" required v-model="area"></v-text-field>
-						<v-text-field label="Country" required v-model="country"></v-text-field>
 						<v-text-field label="Description" required v-model="description"></v-text-field>
 						<v-text-field label="Price" required v-model="price"></v-text-field>
 						<v-file-input label="File input" @change="uploadImage"></v-file-input>
@@ -59,14 +59,19 @@ export default {
 	data() {
 		return {
 			winery: '',
-			name: '',
 			type: '',
 			area: '',
 			country: '',
+			name: '',
 			description: '',
 			price: '',
 			image: null,	
 			btnDisable: true,
+			dropdown_winery: ['Batzella', 'Bonfanti', 'Celestiere', 'Delmeran', 'Domaine Agape', 'Domaine lavillaudiere', 'linaje Garsea'],
+			dropdown_type: ['Hvidvin', 'Rødvin', 'Rose', 'champagne'],
+			dropdown_area: ['Bolgheri', 'Valpolicella', 'Alsace', 'Provence', 'Rhone', 'Sancerre', 'Ribera Del Duero', 'Cigales', 'Rueda'],
+			dropdown_country: ['Italien', 'Frankrig', 'Spanien'],
+
 		}
 	},
 	methods: {
@@ -99,8 +104,9 @@ export default {
 				description: this.description,
 				price: this.price,
 				image: this.image,
-				quantity: '',
-			})
+				quantity: 1,
+			}), 
+			this.$router.push({name:'Vare'});
 		}
 	}
 }

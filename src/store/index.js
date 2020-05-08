@@ -36,9 +36,11 @@ export default new Vuex.Store({
           }
           else{
             state.basketItems.push({
+							winery: item.winery,
               name: item.name,
               price: item.price,
-              quantity: item.quantity,
+							quantity: item.quantity,
+							image: item.image,
             })
           }
         })

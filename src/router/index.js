@@ -7,6 +7,8 @@ import Wineries from '../views/Wineries.vue'
 import Login from '../components/admin/Login.vue'
 import Orders from '../views/Orders.vue'
 import AddNewItems from '../components/admin/AddNewItems.vue'
+import Cart from '../components/Cart.vue'
+import Vare from '../views/Vare.vue'
 import firebase from 'firebase'
 import 'firebase/firestore'
 
@@ -35,6 +37,11 @@ Vue.use(VueRouter)
     name: 'About',
     component: About
   },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: Cart
+  },
 
   //Admin
   {
@@ -53,6 +60,12 @@ Vue.use(VueRouter)
     name: 'addNew',
     meta: {requiresAuth : true},
     component: AddNewItems
+  },
+  {
+    path: '/vare',
+    name: 'Vare',
+    meta: {requiresAuth : true},
+    component: Vare
   },
 
   //Redirect

@@ -7,19 +7,16 @@
 			<router-link tag="li" to="/wineries"><v-icon>mdi-barn</v-icon>Wineries</router-link>
 			<router-link tag="li" to="/about"><v-icon>mdi-information</v-icon>About</router-link>
 			<router-link tag="li" to="/orders" class="primary--text" v-if="currentUser"><v-icon color="primary">mdi-clipboard-text</v-icon>Orders</router-link>
+			<router-link tag="li" to="/vare" class="primary--text" v-if="currentUser"><v-icon color="primary">mdi-package-variant</v-icon>Products</router-link>
 
 			<router-link tag="li" to="/login" class="red--text"><v-icon color="red">mdi-lock</v-icon>Login</router-link>
 		</ul>
     </v-navigation-drawer>
 
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <v-app-bar app color="primary" dark>
 	<v-toolbar-title><router-link tag="li" to="/"><v-icon>mdi-fruit-grapes</v-icon>The Winery</router-link></v-toolbar-title>
       <v-spacer />
-	  <v-icon>mdi-cart</v-icon>
+	  <router-link tag="li" to="/cart"><v-icon id="cart">mdi-cart</v-icon></router-link>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
     </v-app-bar>
 	<v-content></v-content>
@@ -60,6 +57,17 @@ firebase.auth().onAuthStateChanged(function(user){
 </script>
 
 <style lang="scss" scoped>
+
+#cart{
+	font-size: 20px;
+	margin-right: 10px;
+}
+
+	li{
+		list-style-type: none;
+		cursor: pointer;
+	}
+
 
 	nav{
 		ul {

@@ -1,10 +1,7 @@
 <template>
   <v-container>
     <v-row id="welcome">
-      <v-col md="3">
-        <img src="https://businesstech.co.za/news/wp-content/uploads/2015/05/Wine-farm-2.png" alt="">
-      </v-col>
-      <v-col md="7">
+      <v-col>
         <h1>VELKOMMEN TIL THE WINERY</h1>
         <h2>Her får du vin til faste lave priser</h2>
         <p>
@@ -15,113 +12,27 @@
     </v-row>
     <v-row>
       <v-col>
-        <div id="allWine">
-          <div class="navBox">
-          <h2>Tag et kig på alle vores vine</h2>
-          <p>Alle vine fra håndplukkede Vinbonder</p>
-          <v-btn color="red">Vis vine</v-btn>
-          </div>
-        </div>
+        <router-link to="/wine">
+				<div id="allWine">
+          <div class="navBox" >
+						<h2>Tag et kig på alle vores vine</h2>
+						<p>Alle vine fra håndplukkede Vinbonder</p>
+						<v-btn color="red">Vis vine</v-btn>
+						</div>
+        	</div>
+				</router-link>
       </v-col>
       <v-col>
-        <div id="aboutUs">
-          <div class="navBox">
-          <h2>Vil du vide mere om os?</h2>
-          <p>Og alle vores færdigheder</p>
-          <v-btn color="champange">Læs mere</v-btn>
-          </div>
-        </div>
+        <router-link to="/about">
+					<div id="aboutUs">
+						<div class="navBox">
+						<h2>Vil du vide mere om os?</h2>
+						<p>Og alle vores færdigheder</p>
+						<v-btn color="champange">Læs mere</v-btn>
+						</div>
+        	</div>
+				</router-link>
       </v-col>
-    </v-row>
-      <div id="favorites">
-        <h2>Populære Vine</h2>
-        <p>Kunden favoritter</p>
-      </div>
-    <v-row>
-      	<v-col>
-				<div class="card">
-					<div class="img">
-						<img src="https://byensvinhandel.dk/wp-content/uploads/2019/05/Agape-Pinot-Blanc-Expression-300x300.png" alt="Wine">
-					</div>
-					<h3 id="vinhus">Domine Agape</h3>
-					<h2 id="title">Pinot Blanc</h2>
-					<p id="info">Hvidvin fra Alsace, Frankrig</p>
-					<div id="price">100kr.</div>
-					<div id="bottom">
-						<div id="quantity">
-							<v-icon>mdi-minus-box</v-icon>
-							<p>6</p>
-							<v-icon>mdi-plus-box</v-icon>
-						</div>
-						<div id="addToCart">
-							<p>Add to Cart</p>
-						</div>
-					</div>
-				</div>
-			</v-col>
-      	<v-col>
-				<div class="card">
-					<div class="img">
-						<img src="https://byensvinhandel.dk/wp-content/uploads/2019/05/Agape-Pinot-Blanc-Expression-300x300.png" alt="Wine">
-					</div>
-					<h3 id="vinhus">Domine Agape</h3>
-					<h2 id="title">Pinot Blanc</h2>
-					<p id="info">Hvidvin fra Alsace, Frankrig</p>
-					<div id="price">100kr.</div>
-					<div id="bottom">
-						<div id="quantity">
-							<v-icon>mdi-minus-box</v-icon>
-							<p>6</p>
-							<v-icon>mdi-plus-box</v-icon>
-						</div>
-						<div id="addToCart">
-							<p>Add to Cart</p>
-						</div>
-					</div>
-				</div>
-			</v-col>
-      	<v-col>
-				<div class="card">
-					<div class="img">
-						<img src="https://byensvinhandel.dk/wp-content/uploads/2019/05/Agape-Pinot-Blanc-Expression-300x300.png" alt="Wine">
-					</div>
-					<h3 id="vinhus">Domine Agape</h3>
-					<h2 id="title">Pinot Blanc</h2>
-					<p id="info">Hvidvin fra Alsace, Frankrig</p>
-					<div id="price">100kr.</div>
-					<div id="bottom">
-						<div id="quantity">
-							<v-icon>mdi-minus-box</v-icon>
-							<p>6</p>
-							<v-icon>mdi-plus-box</v-icon>
-						</div>
-						<div id="addToCart">
-							<p>Add to Cart</p>
-						</div>
-					</div>
-				</div>
-			</v-col>
-      	<v-col>
-				<div class="card">
-					<div class="img">
-						<img src="https://byensvinhandel.dk/wp-content/uploads/2019/05/Agape-Pinot-Blanc-Expression-300x300.png" alt="Wine">
-					</div>
-					<h3 id="vinhus">Domine Agape</h3>
-					<h2 id="title">Pinot Blanc</h2>
-					<p id="info">Hvidvin fra Alsace, Frankrig</p>
-					<div id="price">100kr.</div>
-					<div id="bottom">
-						<div id="quantity">
-							<v-icon>mdi-minus-box</v-icon>
-							<p>6</p>
-							<v-icon>mdi-plus-box</v-icon>
-						</div>
-						<div id="addToCart">
-							<p>Add to Cart</p>
-						</div>
-					</div>
-				</div>
-			</v-col>
     </v-row>
   </v-container>
 </template>
@@ -142,7 +53,8 @@ export default {
 
     .container {
       align-items: center;
-      justify-content: center;
+			justify-content: center;
+			margin-top: 5vh;
     }
 
     .row{
@@ -287,5 +199,9 @@ export default {
 				}
 			}
 		}
-  }
+	}
+	
+	a{
+		text-decoration: none;
+	}
 </style>

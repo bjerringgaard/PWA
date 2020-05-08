@@ -1,10 +1,23 @@
 <template>
 <div>
-	<Sorter />
-	<v-container>	
-		<v-row>
-			<v-col v-for="item in menuItems" :key="item.name">
-				<div class="card">
+		<v-snackbar v-model="addedSucces" bottom>
+			Added items to Cart
+			<v-btn color="secondary" text to="/cart">Go to Cart</v-btn>
+		</v-snackbar>
+	<div id="banner">
+		<v-container>
+			<div id="sorter">
+				<v-btn v-on:click="redWine = !redWine" class="button" v-bind:class="{ active: redWine }">Rødvin</v-btn>
+				<v-btn v-on:click="whiteWine = !whiteWine" class="button" v-bind:class="{ active: whiteWine }">Hvidvin</v-btn>
+				<v-btn v-on:click="roseWine = !roseWine" class="button" v-bind:class="{ active: roseWine }">Rosevin</v-btn>
+				<v-btn v-on:click="champagne = !champagne" class="button" v-bind:class="{ active: champagne }">Champagne</v-btn>
+			</div>
+		</v-container>
+	</div>
+
+	<v-container>
+		<div id="products">
+				<div class="card" v-for="item in menuItems" :key="item.name" v-if="item.type === 'Rødvin' && redWine === true">
 					<div class="img">
 						<v-img v-bind:src="item.image"></v-img>
 					</div>
@@ -23,71 +36,109 @@
 						</div>
 					</div>
 				</div>
-			</v-col>
-				<v-col offset-md="1" md="4">
-				<div class="pa-2" id="info_box">
-					<h1>Basket</h1>
-					<v-simple-table id="menu_table" v-if="basket.length > 0">
-							<thead>
-								<tr>
-									<th class="text-left" style="width:30%">Quantity</th>
-									<th class="text-left" style="width:50%">Name of item</th>
-									<th class="text-left" style="width:20%">Price</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr v-for="item in basket" :key="item.name">
-									<td>
-										<v-icon v-on:click="decreaseQtn(item)">mdi-minus-box</v-icon>
-										{{ item.quantity }}
-										<v-icon v-on:click="increaseQtn(item)">mdi-plus-box</v-icon>
-									</td>
-									<td>{{ item.name }}</td>
-									<td>{{ item.price }}</td>
-								</tr>
-							</tbody>
-					</v-simple-table>
-
-					<v-simple-table v-else>
-						<p>The Basket is Empty</p>
-					</v-simple-table>
-
-					<div id="basket_checkout" style="margin:0;" class="mt-4">
-						<v-row>
-							<v-col style="width: 30%;">
-								<p>Subtotal: </p>
-								<p>Total delivery: </p>
-								<p>Total Amount: </p>
-							</v-col>
-							<v-col style="width: 30%;">
-								<p>{{ subTotal }} DKK</p>
-								<p>10 DKK</p>
-								<p><b>{{ total }} DKK</b></p>
-							</v-col>
-						</v-row>
-						<v-row>
-							<v-col>
-								<v-btn color="orange" class="mb-4" v-on:click="addCheckoutItem()">CheckOut</v-btn>
-							</v-col>
-						</v-row>
+		
+				<div class="card" v-for="item in menuItems" :key="item.name" v-if="item.type === 'Hvidvin' && whiteWine === true">
+					<div class="img">
+						<v-img v-bind:src="item.image"></v-img>
+					</div>
+					<h3 id="vinhus">{{ item.winery }}</h3>
+					<h2 id="title">{{ item.name }}</h2>
+					<p id="info">{{ item.type }} fra {{ item.area }}, {{ item.country }}</p>
+					<div id="price">{{ item.price }} DKK</div>
+					<div id="bottom">
+						<div id="quantity">
+							<v-icon v-on:click="decreaseQtn(item)">mdi-minus-box</v-icon>
+							<p>{{ item.quantity }}</p>
+							<v-icon v-on:click="increaseQtn(item)">mdi-plus-box</v-icon>
+						</div>
+						<div id="addToCart" v-on:click="addToBasket(item)">
+							<p>Add to Cart</p>
+						</div>
 					</div>
 				</div>
-			</v-col>
-		</v-row>
+
+				<div class="card" v-for="item in menuItems" :key="item.name" v-if="item.type === 'Rose' && roseWine === true">
+					<div class="img">
+						<v-img v-bind:src="item.image"></v-img>
+					</div>
+					<h3 id="vinhus">{{ item.winery }}</h3>
+					<h2 id="title">{{ item.name }}</h2>
+					<p id="info">{{ item.type }} fra {{ item.area }}, {{ item.country }}</p>
+					<div id="price">{{ item.price }} DKK</div>
+					<div id="bottom">
+						<div id="quantity">
+							<v-icon v-on:click="decreaseQtn(item)">mdi-minus-box</v-icon>
+							<p>{{ item.quantity }}</p>
+							<v-icon v-on:click="increaseQtn(item)">mdi-plus-box</v-icon>
+						</div>
+						<div id="addToCart" v-on:click="addToBasket(item)">
+							<p>Add to Cart</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="card" v-for="item in menuItems" :key="item.name" v-if="item.type === 'Champagne' && champagne === true">
+					<div class="img">
+						<v-img v-bind:src="item.image"></v-img>
+					</div>
+					<h3 id="vinhus">{{ item.winery }}</h3>
+					<h2 id="title">{{ item.name }}</h2>
+					<p id="info">{{ item.type }} fra {{ item.area }}, {{ item.country }}</p>
+					<div id="price">{{ item.price }} DKK</div>
+					<div id="bottom">
+						<div id="quantity">
+							<v-icon v-on:click="decreaseQtn(item)">mdi-minus-box</v-icon>
+							<p>{{ item.quantity }}</p>
+							<v-icon v-on:click="increaseQtn(item)">mdi-plus-box</v-icon>
+						</div>
+						<div id="addToCart" v-on:click="addToBasket(item)">
+							<p>Add to Cart</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="card" v-for="item in menuItems" :key="item.name" v-if="redWine == false && whiteWine == false && roseWine == false && champagne == false">
+					<div class="img">
+						<v-img v-bind:src="item.image"></v-img>
+					</div>
+					<h3 id="vinhus">{{ item.winery }}</h3>
+					<h2 id="title">{{ item.name }}</h2>
+					<p id="info">{{ item.type }} fra {{ item.area }}, {{ item.country }}</p>
+					<div id="price">{{ item.price }} DKK</div>
+					<div id="bottom">
+						<div id="quantity">
+							<v-icon v-on:click="decreaseQtn(item)">mdi-minus-box</v-icon>
+							<p>{{ item.quantity }}</p>
+							<v-icon v-on:click="increaseQtn(item)">mdi-plus-box</v-icon>
+						</div>
+						<div id="addToCart" v-on:click="addToBasket(item)">
+							<p>Add to Cart</p>
+						</div>
+					</div>
+				</div>
+				</div>	
 	</v-container>
 </div>
 </template>
 
 <script>
-import Sorter from '../components/Sorter.vue';
 import { dbMenuAdd } from '../../firebase'
 
 export default {
+	
     data () {
       return {
 		basketDump: [],
+		addedSucces: false,
+
+		redWine: false,
+		whiteWine: false,
+		roseWine: false,
+		champagne: false,
+
       }
 	},
+
 	beforeCreate() {
 		this.$store.dispatch('setMenuItems')
 	},
@@ -97,12 +148,15 @@ export default {
 		},
 		addToBasket(item) {
 			this.basketDump.push({
+				image: item.image,
+				winery: item.winery,
 				name: item.name,
 				price: item.price,
 				quantity: item.quantity,
 			});
 			this.$store.commit('addBasketItems', this.basketDump);
 			this.basketDump = [];
+			this.addedSucces = true;
 		},
 		increaseQtn(item) {
 			item.quantity++
@@ -146,8 +200,17 @@ export default {
 		margin-bottom: 0;
 	}
 
+	.row{
+		display: flex;
+	}
+
 	.col{
 		width: 300px;
+	}
+
+	#products{
+		display: flex;
+		justify-content: center;
 	}
 
 	.card {
@@ -156,7 +219,7 @@ export default {
 		border-radius: 10px;
 
 		padding: 0;
-		margin: 0;
+		margin: 10px;
 
 		.img{
 		width: 300px;
@@ -221,6 +284,31 @@ export default {
 				p{
 					color: map-get($color, wtext)
 				}
+			}
+		}
+	}
+
+	#banner{
+		background-color: map-get($map: $color, $key: cardbg);
+		height: 80px;
+		width: 100%;
+		margin-bottom: 50px;
+		margin-top: -60px;
+
+		#sorter{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			button{
+				margin: 10px;
+				box-shadow: none;
+				background-color: map-get($map: $color, $key: wtext);
+			}
+
+			.active{
+				background-color: map-get($map: $color, $key: primary);
+				color: map-get($map: $color, $key: wtext)
 			}
 		}
 	}
